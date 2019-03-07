@@ -1,4 +1,8 @@
 class Api::V1::UsersController < ApplicationController
+  def index
+    render :json => User.all
+  end
+  
   def create
     @user = User.new(users_params)
     if @user && @user.save
