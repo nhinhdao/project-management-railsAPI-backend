@@ -1,6 +1,7 @@
 class Api::V1::ProjectsController < ApplicationController
   def index
-    render :json => Project.find_by(owner_id: session[:current_user_id]), include: ['owner', 'tasks', 'tasks.users']
+    render :json => Project.find_by(owner_id: session[:current_user_id]), include: ['owner', 'tasks', 'tasks.user']
+    # render :json => Project.all
   end
   
   def create
@@ -22,7 +23,7 @@ class Api::V1::ProjectsController < ApplicationController
   end
   
   def show
-    render :json => Project.find(params[:id]), include: ['owner', 'tasks', 'tasks.users']
+    render :json => Project.find(params[:id]), include: ['owner', 'tasks', 'tasks.user']
   end
   
   def destroy
@@ -32,6 +33,6 @@ class Api::V1::ProjectsController < ApplicationController
   private
   
   def project_params
-    params.require(:project).permit(:id, :name, :description, :time, :status, :owner_id)
+    params.require(:project).permit(:id, :name, :description, :start_date, :end_date, :status, :owner_id)
   end
 end
