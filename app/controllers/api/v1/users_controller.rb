@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(users_params)
+    @user = User.new(users_params_create)
     if @user && @user.save
       session[:current_user_id] = @user.id
       render :json => @user
@@ -15,7 +15,8 @@ class Api::V1::UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update(users_params)
+    binding.pry
+    if @user.update(users_params_update)
       render :json => @user
     else
       render :json => {"errors": @user.errors.full_messages}
@@ -30,7 +31,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
   
-  def users_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  def users_params_create
+    params.permit(:username, :email, :password, :password_confirmation)
+  end
+
+  def users_params_update
+    params.permit(:username, :email, :password, :password_confirmation, :image)
   end
 end
