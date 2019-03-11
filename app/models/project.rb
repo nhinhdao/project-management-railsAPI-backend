@@ -2,9 +2,7 @@ class Project < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :tasks, dependent: :delete_all
 
-  enum status: [:not_started, :active, :completed, :dismissed]
-
-  validates :name, :description, :start_date, :end_date, presence: true
+  validates :title, :description, :start_date, :end_date, presence: true
 end
 
 # Project.create(name: 'New Project', description: 'Test user', start_date: '2019/03/02', end_date: '2019-03-10', owner_id: 2)

@@ -1,9 +1,4 @@
 class Api::V1::ProjectsController < ApplicationController
-  def index
-    # render :json => Project.find_by(owner_id: session[:current_user_id]), include: ['owner', 'tasks', 'tasks.user']
-    render :json => Project.all, include: ['owner', 'tasks', 'tasks.user']
-  end
-
   def myprojects
     project1 = Project.where(owner_id: params[:id])
     project2 = Project.joins(:tasks).where(tasks: {user_id: params[:id]})
@@ -42,7 +37,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
   
   def project_params
-    params.require(:project).permit(:id, :name, :description, :start_date, :end_date, :status, :owner_id)
+    params.require(:project).permit(:id, :title, :description, :start_date, :end_date, :owner_id)
   end
 
   def task_params

@@ -1,17 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create!(username: "robindao", email: "nhinhdao.vnn@gmail.com", image: 'https://i.imgur.com/vBHAwZo.jpg?1', password: 'nhinh12345', password_confirmation: 'nhinh12345')
-User.create!(username: "sarahmay", email: "sarahmay@gmail.com", image: "https://i.imgur.com/UpkwvqX.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
-User.create!(username: "louislau", email: "louislau@tank.run", image: "https://i.imgur.com/zGojDXh.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
-User.create!(username: "vickyvu", email: "vickyvu@nails.doing", image: "https://i.imgur.com/JLSppzh.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
-User.create!(username: "helendaniels", email: "helendan@donothing.com", image: "https://i.imgur.com/1KnRByb.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
+
+u1 = User.create!(username: "robindao", email: "nhinhdao.vnn@gmail.com", image: 'https://i.imgur.com/vBHAwZo.jpg?1', password: 'nhinh12345', password_confirmation: 'nhinh12345')
+u2 = User.create!(username: "sarahmay", email: "sarahmay@gmail.com", image: "https://i.imgur.com/UpkwvqX.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
+u3 = User.create!(username: "louislau", email: "louislau@tank.run", image: "https://i.imgur.com/zGojDXh.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
+u4 = User.create!(username: "vickyvu", email: "vickyvu@nails.doing", image: "https://i.imgur.com/JLSppzh.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
+u5 = User.create!(username: "helendaniels", email: "helendan@donothing.com", image: "https://i.imgur.com/1KnRByb.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
 User.create!(username: "steventran", email: "steveetran@coolguy.com", image: "https://i.imgur.com/o6udarW.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
 User.create!(username: "annathompson", email: "annathson@notsure.com", image: "https://i.imgur.com/PTVsCbl.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
 User.create!(username: "alicegreen", email: "alicegreen@ok.com", image: "https://i.imgur.com/xESh5uq.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
 User.create!(username: "dannyhauer", email: "dannyhauer@youtube.com", image: "https://i.imgur.com/SyBpaM4.jpg", password: 'nhinh12345', password_confirmation: 'nhinh12345')
 User.create!(username: "rosalinepayne", email: "rosepayne@flower.buyme", image: "https://i.imgur.com/nIeUP44.png", password: 'nhinh12345', password_confirmation: 'nhinh12345')
+
+p1 = Project.create!(title: 'Customer satisfaction report', description: 'Prepare, send and present Customer Satisfaction Report of February', start_date: '2019-03-10', end_date: '2019-03-15', owner_id: u1.id)
+p2 = Project.create!(title: 'Product show page', description: 'Implement new page layout using Adobe Theme', start_date: '2019-03-12', end_date: '2019-03-17', owner_id: u1.id)
+p3 = Project.create!(title: 'Customize search function', description: 'Apply autocomplete and suggestion in home page search function', start_date: '2019-03-11', end_date: '2019-03-20', owner_id: u2.id)
+
+t1 = Task.create!(content: 'Sorting CSR data per different categories', project_id: p1.id, user_id: u2.id)
+t2 = Task.create!(content: 'Add Customer Complaint section', project_id: p1.id, user_id: u4.id)
+t3 = Task.create!(content: 'Find and fix bugs related to slow loading issue', project_id: p2.id, user_id: u3.id)
+t4 = Task.create!(content: 'Customize new theme to fit company background', project_id: p2.id, user_id: u5.id)
+t5 = Task.create!(content: 'Make search function sticky on home page', project_id: p3.id, user_id: u1.id)
