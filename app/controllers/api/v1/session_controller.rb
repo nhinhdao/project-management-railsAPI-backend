@@ -5,12 +5,12 @@ class Api::V1::SessionController < ApplicationController
       session[:current_user_id] = @user.id
       render :json => @user
     else
-      render :json => {"errors": @user.errors.full_messages}
+      render :json => {'errors': 'Incorrect Username/Password'}
     end
   end
   
   def destroy
-    session.destroy
+    session.clear
     render :json => {'message': "Successfully Loged Out"}
   end
 end
