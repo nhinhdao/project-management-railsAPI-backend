@@ -9,7 +9,6 @@ class Api::V1::ProjectsController < ApplicationController
   def create
     @project = Project.create(project_params)
     if @project
-      binding.pry
       task_params.each{|task| @project.tasks.create(task)}
       render :json => @project
     else
@@ -19,6 +18,7 @@ class Api::V1::ProjectsController < ApplicationController
   
   def update
     project = project.find(params["id"])
+    binding.pry
     if project.update_attributes(project_params)
       render :json => @project
     else
