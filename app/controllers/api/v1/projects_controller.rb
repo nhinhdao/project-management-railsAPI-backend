@@ -17,9 +17,10 @@ class Api::V1::ProjectsController < ApplicationController
   end
   
   def update
-    project = project.find(params["id"])
-    binding.pry
-    if project.update_attributes(project_params)
+    @project = Project.find(params["id"])
+    if @project.update_attributes(project_params)
+      @project.tasks.destroy_all
+      task_params.each{|task| @project.tasks.create(task)}
       render :json => @project
     else
       render :json => {'error': @project.errors.full_messages} 
@@ -37,7 +38,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
   
   def project_params
-    params.require(:project).permit(:id, :title, :description, :start_date, :end_date, :owner_id)
+    params.require(:project).permit(:title, :description, :start_date, :end_date, :owner_id)
   end
 
   def task_params
