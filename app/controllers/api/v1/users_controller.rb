@@ -5,7 +5,6 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(users_params_create)
-    binding.pry
     if @user && @user.save
       session[:current_user_id] = @user.id
       render :json => @user

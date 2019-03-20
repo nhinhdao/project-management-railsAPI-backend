@@ -40,7 +40,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
   
   def project_params
-    params.require(:project).permit(:title, :description, :start_date, :end_date, :owner_id)
+    params.permit(:title, :description, :start_date, :end_date, :owner_id)
   end
 
   def task_params
